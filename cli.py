@@ -2,11 +2,9 @@
 """
 SynthForge CLI
 Kullanım:
-  python cli.py --help
-  python cli.py "e-ticaret sipariş verisi üret" --type tabular --rows 200 --format csv
-  python cli.py "kullanıcı yorumları" --type nlp --rows 50 --format jsonl
-  python cli.py "API erişim logları" --type log --rows 500 --format jsonl
-  python cli.py "CPU ve bellek metrikleri" --type timeseries --rows 1000 --format csv
+  python cli.py --ui                                    # Terminal UI başlat
+  python cli.py "e-ticaret sipariş verisi" -t tabular   # CLI modu
+  python cli.py "kullanıcı yorumları" -t nlp -r 50 -f jsonl
 """
 import argparse
 import sys
@@ -15,10 +13,16 @@ import os
 # Proje kökünü path'e ekle
 sys.path.insert(0, os.path.dirname(__file__))
 
-from core.types import DataType, ExportFormat
-
 
 def main():
+    # Önce --ui kontrolü yap
+    if "--ui" in sys.argv or "-U" in sys.argv:
+        from tui import main as tui_main
+        tui_main()
+        return
+
+    from core.types import DataType, ExportFormat
+
     parser = argparse.ArgumentParser(
         description="SynthForge — İsteğe göre kusursuz sentetik veri üretici",
         formatter_class=argparse.RawDescriptionHelpFormatter,
