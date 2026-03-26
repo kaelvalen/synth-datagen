@@ -16,6 +16,8 @@ class ExportFormat(str, Enum):
     JSONL = "jsonl"
     PARQUET = "parquet"
     TXT = "txt"
+    SQL = "sql"
+    XLSX = "xlsx"
 
 
 @dataclass
