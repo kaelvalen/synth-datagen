@@ -31,7 +31,7 @@ def get_client() -> anthropic.Anthropic:
 def chat(
     system: str,
     user: str,
-    model: str = "claude-sonnet-4-20250514",
+    model: str = "claude-sonnet-4-6",
     max_tokens: int = 4096,
     retries: int = 3,
     temperature: float = 0.7,
